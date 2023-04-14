@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Color Creator</title>
+
+    <script type="module" src="./src/ts/main.ts"></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="format-picker">
+        <h2>Pick the format of your color</h2>
+        <label for="rgb">
+          <input
+            type="radio"
+            name="color-format"
+            class="color-format"
+            checked
+            id="rgb"
+          />
+          RGB
+        </label>
+        <label for="hex">
+          <input
+            type="radio"
+            name="color-format"
+            class="color-format"
+            id="hex"
+          />
+          Hexadecimal
+        </label>
+        <label for="hsl">
+          <input
+            type="radio"
+            name="color-format"
+            class="color-format"
+            id="hsl"
+          />
+          HSL
+        </label>
+      </section>
+
+      <form action="" class="form" id="rgb_input">
+        <fieldset>
+          <h3>RGB</h3>
+
+          <label>
+            <p>Red</p>
+            <input
+              type="number"
+              class="form__input"
+              id="red"
+              placeholder="A value from 0 to 255"
+            />
+          </label>
+
+          <label>
+            <p>Green</p>
+            <input
+              type="number"
+              class="form__input"
+              id="green"
+              placeholder="A value from 0 to 255"
+            />
+          </label>
+
+          <label>
+            <p>Blue</p>
+            <input
+              type="number"
+              class="form__input"
+              id="blue"
+              placeholder="A value from 0 to 255"
+            />
+          </label>
+        </fieldset>
+        <button type="submit" id="createColor" class="form__button">
+          Create a color
+        </button>
+      </form>
+    </main>
+  </body>
+</html>
