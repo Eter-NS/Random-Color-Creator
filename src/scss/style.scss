@@ -3,3 +3,11 @@
 button {
   display: block;
 }
+
+.form {
+  &__input {
+    &--error {
+      border: 2px solid hsl(0, 100%, 50%, 0.8);
+    }
+  }
+}
