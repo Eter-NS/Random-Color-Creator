@@ -2,58 +2,60 @@ import { Phrases } from "../types/SectionPhrases";
 
 export default function generateDOMTree(
   colorFormElement: HTMLFormElement,
-  {
-    formatName,
-    sectionPhrases,
-  }: { formatName: string; sectionPhrases: Phrases }
+  formatClass: { formatName: string; sectionPhrases: Phrases }
 ) {
-  colorFormElement.id = formatName;
-  const container = colorFormElement.querySelector("fieldset");
-  if (!container) throw new Error("fieldset not found");
+  const { formatName, sectionPhrases } = formatClass;
 
-  const DOMTree = new DocumentFragment();
+  return new Promise<HTMLFormElement>((resolve, reject) => {
+    colorFormElement.id = formatName;
+    const container = colorFormElement.querySelector("fieldset");
+    if (!container) throw new Error("fieldset not found");
 
-  // creating form elements for this section
-  const { name, inputs, inputType, placeholder } = sectionPhrases;
+    const DOMTree = new DocumentFragment();
 
-  const h3 = document.createElement("h3");
-  h3.innerText = name;
-  DOMTree.append(h3);
+    // creating form elements for this section
+    const { name, inputs, inputType, placeholder } = sectionPhrases;
 
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i];
+    const h3 = document.createElement("h3");
+    h3.innerText = name;
+    DOMTree.append(h3);
 
-    const label = document.createElement("label");
-    const p = document.createElement("p");
-    p.innerText = inputs[i];
-    const inputTag = document.createElement("input");
-    inputTag.id = inputs[i].toLowerCase();
-    inputTag.classList.add("form__input");
-    inputTag.placeholder = placeholder[i];
-    inputTag.type = inputType;
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i];
 
-    // validation attributes settings
-    if (inputType === "text") {
-      inputTag.pattern = /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.source;
-    } else if (inputType === "number") {
-      if (name === "RGB") {
-        inputTag.min = "0";
-        inputTag.max = "255";
+      const label = document.createElement("label");
+      const p = document.createElement("p");
+      p.innerText = inputs[i];
+      const inputTag = document.createElement("input");
+      inputTag.id = inputs[i].toLowerCase();
+      inputTag.classList.add("form__input");
+      inputTag.placeholder = placeholder[i];
+      inputTag.type = inputType;
+
+      // validation attributes settings
+      if (inputType === "text") {
+        inputTag.pattern = /^([0-9a-fA-F]{1}|[0-9a-fA-F]{2})$/.source;
+      } else if (inputType === "number") {
+        if (name === "RGB") {
+          inputTag.min = "0";
+          inputTag.max = "255";
+        }
+        if (name === "HSL") {
+          inputTag.min = "0";
+          i === 0 ? (inputTag.max = "360") : (inputTag.max = "100");
+        }
+      } else {
+        reject("Unknown color format");
       }
-      if (name === "HSL") {
-        inputTag.min = "0";
-        i === 0 ? (inputTag.max = "360") : (inputTag.max = "100");
-      }
-    } else {
-      throw new Error("Unknown format type");
+
+      label.append(p);
+      label.append(inputTag);
+      if (name === "HSL" && i === 0) label.append("deg");
+      if (name === "HSL" && i > 0) label.append("%");
+      DOMTree.append(label);
     }
-
-    label.append(p);
-    label.append(inputTag);
-    if (name === "HSL" && i === 0) label.append("deg");
-    if (name === "HSL" && i > 0) label.append("%");
-    DOMTree.append(label);
-  }
-  container.innerHTML = ""; // removes the previous tree
-  container.append(DOMTree);
+    container.innerHTML = ""; // removes the previous tree
+    container.append(DOMTree);
+    resolve(colorFormElement);
+  });
 }
