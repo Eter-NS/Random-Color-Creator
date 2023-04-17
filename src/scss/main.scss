@@ -1,0 +1,28 @@
+@use "./reset" as *;
+
+// main section elements
+@use "./components/form" as *;
+@use "./components/format_picker" as *;
+@use "./components/fresh-baked-section" as *;
+
+// footer
+@use "./components/footer" as *;
+
+// reusable
+@use "./reusable/index";
+
+.container {
+  margin: 0 auto;
+  width: 80vmin;
+  background-color: $root-background-color;
+}
+
+noscript {
+  width: 100%;
+
+  p {
+    background-color: hsl(0, 64%, 25%);
+    font-size: 1.5rem;
+    color: white;
+  }
+}
