@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Random Color Creator</title>
 
     <script type="module" src="./src/ts/main.ts"></script>
   </head>
+
   <body>
     <noscript>
       <p>
@@ -16,8 +18,9 @@
       </p>
     </noscript>
     <main class="container">
+      <h1>Random Color Creator</h1>
       <section class="format-picker">
-        <h1>Pick the format of your color</h1>
+        <h2>Pick the format of your color</h2>
         <div class="format-picker__label-list">
           <label for="rgb">
             <input
@@ -52,7 +55,7 @@
 
       <form action="" class="form" id="rgb_input">
         <fieldset>
-          <h2>RGB</h2>
+          <h3>RGB</h3>
           <label>
             <p>Red</p>
             <input
@@ -86,5 +89,18 @@
         </button>
       </form>
     </main>
+    <footer class="footer">
+      <h2 class="footer__heading">Find me here!</h2>
+      <ul class="footer__list">
+        <li class="footer__list-element">Instagram</li>
+        <li class="footer__list-element">Github</li>
+        <li class="footer__list-element">Linkedin</li>
+      </ul>
+
+      <p class="footer__creator-watermark">
+        Designed and created by
+        <span>Norbert Sosnowski</span>
+      </p>
+    </footer>
   </body>
 </html>
