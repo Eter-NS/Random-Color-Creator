@@ -1,0 +1,91 @@
+@use "../reset" as *;
+@use "../reusable/tooltip" as *;
+@use "sass:color";
+
+.fresh-baked {
+  $first-color: color.adjust(
+    $color: $first-color,
+    $lightness: -5%,
+  );
+  $second-color: color.adjust(
+    $color: $second-color,
+    $lightness: -5%,
+  );
+
+  margin-top: 50px;
+  padding: $default-padding;
+  background: linear-gradient(
+        45deg,
+        $root-background-color,
+        $root-background-color
+      )
+      padding-box,
+    linear-gradient(45deg, $first-color, $second-color) border-box;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: $border-radius-large;
+  text-align: center;
+
+  $height: 45px;
+
+  &__block-label {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+  }
+
+  &__color-preview {
+    border: 3px solid rgb(0, 0, 0, 0.75);
+    width: $height;
+    height: $height;
+  }
+
+  &__output-element {
+    display: grid;
+    place-items: center;
+    height: $height;
+    padding: 0 calc($height / 2);
+    margin-left: calc($height / 2);
+    background-color: $first-color;
+    border: 2px solid black;
+    border-right-width: 0;
+  }
+
+  &__clipboard-button {
+    background-color: $first-color;
+    border: 2px solid black;
+    border-left-width: 0;
+    height: $height;
+    width: $height;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+
+    position: relative;
+    --animation-name: null;
+    --animation-duration: null;
+    @include addTooltip($content: attr(data-tooltip), $width: max-content) {
+      opacity: 0;
+      animation: var(--animation-name) var(--animation-duration) ease;
+    }
+  }
+}
+
+@keyframes fade-in-out {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  25%,
+  75% {
+    opacity: 1;
+  }
+}
+
+.clipboard-svg {
+  fill: whitesmoke;
+}

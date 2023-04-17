@@ -1,0 +1,48 @@
+@use "../reset";
+
+@mixin addTooltip(
+  $width: 100%,
+  $content: "",
+  $background-color: #888,
+  $color: black
+) {
+  // common settings
+  &::before,
+  &::after {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--transform-y));
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  // the content
+  &::before {
+    $block-padding: 20%;
+    --transform-y: calc(100% + #{$block-padding} / 2);
+
+    content: $content;
+    width: $width;
+    padding: $block-padding 25%;
+    text-align: center;
+    border-radius: reset.$border-radius-small;
+    background-color: $background-color;
+    transform-origin: bottom center;
+
+    outline: 2px solid black;
+
+    @content;
+  }
+
+  // arrow
+  &::after {
+    --transform-y: 0%;
+    content: "";
+    border: 20px solid transparent;
+    border-bottom-color: $background-color;
+    transform-origin: top center;
+
+    @content;
+  }
+}
