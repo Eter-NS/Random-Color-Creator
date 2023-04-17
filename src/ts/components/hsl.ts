@@ -45,6 +45,4 @@ export default class HSL {
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
-
-  bindColorEntries() {}
 }

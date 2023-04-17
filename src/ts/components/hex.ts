@@ -54,6 +54,4 @@ export default class Hex {
 
     return "#" + this._hexColor.join("");
   }
-
-  bindColorEntries() {}
 }

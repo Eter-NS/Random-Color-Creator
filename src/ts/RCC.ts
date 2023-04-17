@@ -81,11 +81,22 @@ export default class RCC {
     });
   }
 
-  _checkElement = (input: HTMLInputElement) => {
-    if (!input.value) return false;
-    const hasError = !input.checkValidity();
+  _checkElement = (input: HTMLInputElement): [boolean, number] => {
+    // 0 = default
+    let inputValueLength: number = 0,
+      hasError = false;
+
+    if (!input.value) {
+      return [hasError, inputValueLength];
+    }
+    hasError = !input.checkValidity();
     this._toggleError(input, hasError);
-    return hasError;
+
+    // checking the same length for hex inputs
+    if (input.type === "text") {
+      inputValueLength = input.value.length;
+    }
+    return [hasError, inputValueLength];
   };
 
   _toggleError = (input: HTMLInputElement, hasError: boolean) => {
@@ -96,12 +107,34 @@ export default class RCC {
     this._colorForm.addEventListener("submit", (e: Event) => {
       e.preventDefault();
 
-      this._colorInputs.forEach((input) => {
-        if (this._checkElement(input)) {
-          this.globalError = true;
+      this.globalError = false;
+      let lengthOfTheFirstHexInput = 0;
+      let invalidHexInputIndex = -1;
+      for (let i = 0; i < this._colorInputs.length; i++) {
+        const input = this._colorInputs[i];
+
+        const [hasError, hexInputLength] = this._checkElement(input);
+
+        if (hasError) this.globalError = true;
+        if (hexInputLength) {
+          if (i === 0) {
+            lengthOfTheFirstHexInput = hexInputLength;
+            continue;
+          }
+          if (lengthOfTheFirstHexInput !== hexInputLength) {
+            this.globalError = true;
+            invalidHexInputIndex = i;
+          }
         }
-      });
-      if (this.globalError) return;
+      }
+
+      if (this.globalError) {
+        this._toggleError(
+          this._colorInputs[invalidHexInputIndex],
+          this.globalError
+        );
+        return;
+      }
       this._createRandomColor()
         .then((res) => {
           this._createResultContainer(res);
@@ -138,14 +171,15 @@ export default class RCC {
 
     const section = document.createElement("section");
     section.classList.add("fresh-baked");
-    const h3 = document.createElement("h3");
+    const h3 = document.createElement("h2");
     h3.innerText = "Here, this is your new color! 😊";
 
     const div = document.createElement("div");
+    div.classList.add("fresh-baked__block-label");
     const colorPreviewContainer = document.createElement("div");
     colorPreviewContainer.classList.add("fresh-baked__color-preview");
     colorPreviewContainer.style.setProperty(
-      "--customBackgroundColor",
+      "--custom-background-color",
       newColor
     );
     const outputElement = document.createElement("p");

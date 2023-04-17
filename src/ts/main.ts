@@ -1,4 +1,4 @@
-import "../scss/style.scss";
+import "../scss/main.scss";
 import RCC from "./RCC";
 
 window.addEventListener("DOMContentLoaded", () => {

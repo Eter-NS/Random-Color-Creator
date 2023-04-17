@@ -9,41 +9,78 @@
     <script type="module" src="./src/ts/main.ts"></script>
   </head>
   <body>
+    <noscript>
+      <p>
+        Hey, you don't have Javascript enabled 😟 Please enable it in your site
+        setting to use this tool 😇
+      </p>
+    </noscript>
     <main class="container">
       <section class="format-picker">
-        <h2>Pick the format of your color</h2>
-        <label for="rgb">
-          <input
-            type="radio"
-            name="color-format"
-            class="color-format"
-            checked
-            id="rgb"
-          />
-          RGB
-        </label>
-        <label for="hex">
-          <input
-            type="radio"
-            name="color-format"
-            class="color-format"
-            id="hex"
-          />
-          Hexadecimal
-        </label>
-        <label for="hsl">
-          <input
-            type="radio"
-            name="color-format"
-            class="color-format"
-            id="hsl"
-          />
-          HSL
-        </label>
+        <h1>Pick the format of your color</h1>
+        <div class="format-picker__label-list">
+          <label for="rgb">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              checked
+              id="rgb"
+            />
+            <p>RGB</p>
+          </label>
+          <label for="hex">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              id="hex"
+            />
+            <p>Hexadecimal</p>
+          </label>
+          <label for="hsl">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              id="hsl"
+            />
+            <p>HSL</p>
+          </label>
+        </div>
       </section>
 
       <form action="" class="form" id="rgb_input">
-        <fieldset></fieldset>
+        <fieldset>
+          <h2>RGB</h2>
+          <label>
+            <p>Red</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="red"
+              class="form__input"
+            />
+          </label>
+          <label>
+            <p>Green</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="green"
+              class="form__input"
+            />
+          </label>
+          <label>
+            <p>Blue</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="blue"
+              class="form__input"
+            />
+          </label>
+        </fieldset>
         <button type="submit" id="createColor" class="form__button">
           Create a color
         </button>
