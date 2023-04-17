@@ -1,0 +1,11 @@
+@use "../reset" as *;
+
+h1 {
+  $whole-distance: 15%;
+
+  font-size: 2rem;
+  text-align: center;
+  padding-block: calc($whole-distance / 2);
+  margin-block: calc($whole-distance / 2);
+  border-bottom: 3px solid $first-color;
+}

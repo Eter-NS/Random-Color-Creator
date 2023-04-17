@@ -20,7 +20,7 @@ export default function generateDOMTree(
     // creating form elements for this section
     const { name, inputs, inputType, placeholder } = sectionPhrases;
 
-    const h3 = document.createElement("h2");
+    const h3 = document.createElement("h3");
     h3.innerText = name;
     DOMTree.append(h3);
 
