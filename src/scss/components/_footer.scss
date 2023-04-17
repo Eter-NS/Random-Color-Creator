@@ -1,0 +1,38 @@
+@use "../reset" as *;
+
+.footer {
+  width: 100%;
+  padding: $default-padding;
+  margin-top: 15%;
+  background-color: $footer-color;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3vmin;
+
+  &__heading {
+    align-self: flex-start;
+  }
+
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    column-gap: 10%;
+
+    &-element {
+      list-style: none;
+    }
+  }
+
+  &__creator-watermark {
+    text-align: center;
+
+    span {
+      white-space: nowrap;
+    }
+  }
+}

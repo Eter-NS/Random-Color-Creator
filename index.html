@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Random Color Creator</title>
+
+    <script type="module" src="./src/ts/main.ts"></script>
+  </head>
+
+  <body>
+    <noscript>
+      <p>
+        Hey, you don't have Javascript enabled 😟 Please enable it in your site
+        setting to use this tool 😇
+      </p>
+    </noscript>
+    <main class="container">
+      <h1>Random Color Creator</h1>
+      <section class="format-picker">
+        <h2>Pick the format of your color</h2>
+        <div class="format-picker__label-list">
+          <label for="rgb">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              checked
+              id="rgb"
+            />
+            <p>RGB</p>
+          </label>
+          <label for="hex">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              id="hex"
+            />
+            <p>Hexadecimal</p>
+          </label>
+          <label for="hsl">
+            <input
+              type="radio"
+              name="color-format"
+              class="color-format"
+              id="hsl"
+            />
+            <p>HSL</p>
+          </label>
+        </div>
+      </section>
+
+      <form action="" class="form" id="rgb_input">
+        <fieldset>
+          <h3>RGB</h3>
+          <label>
+            <p>Red</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="red"
+              class="form__input"
+              min="0"
+              max="255"
+            />
+          </label>
+          <label>
+            <p>Green</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="green"
+              class="form__input"
+              min="0"
+              max="255"
+            />
+          </label>
+          <label>
+            <p>Blue</p>
+            <input
+              type="number"
+              placeholder="A value from 0 to 255"
+              id="blue"
+              class="form__input"
+              min="0"
+              max="255"
+            />
+          </label>
+        </fieldset>
+        <button type="submit" id="createColor" class="form__button">
+          Create a color
+        </button>
+      </form>
+    </main>
+    <footer class="footer">
+      <h2 class="footer__heading">Find me here!</h2>
+      <ul class="footer__list">
+        <li class="footer__list-element">Instagram</li>
+        <li class="footer__list-element">Github</li>
+        <li class="footer__list-element">Linkedin</li>
+      </ul>
+
+      <p class="footer__creator-watermark">
+        <span>2023 -</span>
+        Designed and created by
+        <span>Norbert Sosnowski</span>
+      </p>
+    </footer>
+  </body>
+</html>

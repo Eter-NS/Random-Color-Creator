@@ -1,0 +1,109 @@
+@use "../reset" as *;
+
+$local-color-1: hsl(0, 0%, 10%);
+$local-color-2: hsl(0, 0%, 60%);
+
+.form {
+  border: 2px solid $first-color;
+  border-radius: $border-radius-large;
+  overflow: hidden;
+
+  p {
+    margin: 0.3rem 0;
+    margin-left: 1rem;
+  }
+
+  fieldset {
+    transition: opacity 0.75s ease, transform 0.5s ease;
+    border: none;
+    margin: $default-margin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      width: min-content;
+    }
+  }
+
+  &__input {
+    margin: 0 auto;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: $border-radius-medium;
+    color: $local-color-1;
+    border: 3px solid $local-color-2;
+    font-size: 1rem;
+
+    & + p {
+      font-size: 1rem;
+      margin: 0;
+      width: 1.8rem;
+      text-align: left;
+    }
+
+    &--error {
+      border: 2px solid hsl(0, 100%, 50%, 0.8);
+    }
+  }
+
+  &__button {
+    margin: 5% auto;
+    padding: 10px;
+    border-radius: $border-radius-medium;
+    border: 3px solid $local-color-2;
+    color: $local-color-1;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    /* If it is desktop, then use these hover elements */
+    @media (hover: hover) {
+      &::before {
+        content: "";
+        position: absolute;
+        top: -75%;
+        left: -25%;
+        background-color: black;
+        width: 10px;
+        height: 100px;
+        transform: rotate(30deg);
+      }
+
+      &:hover::before {
+        animation: goTowardsRight 1.25s ease 50ms 1 forwards;
+      }
+
+      &:hover {
+        // animation: name duration timing-function delay iteration-count direction fill-mode;
+        animation: shine 1s ease 1 backwards;
+      }
+    }
+  }
+}
+@keyframes goTowardsRight {
+  from {
+    transform: translateX(0%) rotate(30deg);
+  }
+  to {
+    transform: translateX(200px) rotate(30deg);
+  }
+}
+
+@keyframes shine {
+  from,
+  to {
+    backface-visibility: hidden;
+    transform: scale(100%);
+  }
+
+  50% {
+    backface-visibility: hidden;
+    transform: scale(110%);
+  }
+}
