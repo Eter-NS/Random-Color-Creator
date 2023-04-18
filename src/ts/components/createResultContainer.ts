@@ -6,7 +6,28 @@ export function createResultContainer(
   newColor: string,
   colorForm: HTMLFormElement
 ) {
-  if (colorForm.nextElementSibling) colorForm.nextElementSibling.remove();
+  if (colorForm.nextElementSibling) {
+    const existingSection = colorForm.nextElementSibling,
+      outputElement = existingSection.querySelector<HTMLParagraphElement>(
+        ".fresh-baked__output-element"
+      ),
+      colorPreviewContainer = existingSection.querySelector<HTMLDivElement>(
+        ".fresh-baked__color-preview"
+      ),
+      pasteToClipboardButton = existingSection.querySelector<HTMLButtonElement>(
+        ".fresh-baked__clipboard-button"
+      );
+
+    if (!outputElement || !colorPreviewContainer || !pasteToClipboardButton)
+      return;
+
+    colorPreviewContainer.style.backgroundColor = newColor;
+    outputElement.innerText = newColor;
+    pasteToClipboardButton.innerHTML = clipboardSVG;
+    listenForClick(pasteToClipboardButton, newColor);
+
+    return;
+  }
 
   const justBakedContainer = new DocumentFragment();
 
