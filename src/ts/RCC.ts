@@ -51,10 +51,10 @@ export default class RCC {
 
   private _radioBinder() {
     this._radioInputs.forEach((rInput) => {
-      rInput.addEventListener("change", () => {
+      rInput.onchange = () => {
         if (!rInput.checked) return;
         this._currentFormat = this._changeFormat(rInput.id);
-      });
+      };
     });
   }
 
@@ -75,10 +75,10 @@ export default class RCC {
   private _bindColorEntries(result: HTMLFormElement) {
     this._colorInputs = result.querySelectorAll("input");
     this._colorInputs.forEach((input) => {
-      input.addEventListener("blur", (e) => {
+      input.onblur = (e) => {
         e.preventDefault();
         this._checkElement(input);
-      });
+      };
     });
   }
 
@@ -101,7 +101,7 @@ export default class RCC {
   };
 
   _toggleError = (input: HTMLInputElement, hasError: boolean) => {
-    input.classList.toggle("form__input--error", hasError);
+    input?.classList.toggle("form__input--error", hasError);
   };
 
   private _formBinder() {
@@ -130,10 +130,12 @@ export default class RCC {
       }
 
       if (this.globalError) {
-        this._toggleError(
-          this._colorInputs[invalidHexInputIndex],
-          this.globalError
-        );
+        if (this._colorForm.id === "hex_input") {
+          this._toggleError(
+            this._colorInputs[invalidHexInputIndex],
+            this.globalError
+          );
+        }
         return;
       }
       this._createRandomColor()
