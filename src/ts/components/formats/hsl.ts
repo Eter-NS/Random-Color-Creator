@@ -1,5 +1,5 @@
-import { Phrases } from "../types/SectionPhrases";
-import randomNumberFromInterval from "./randomNumberFromInterval";
+import { Phrases } from "../../types/SectionPhrases";
+import randomNumberFromInterval from "../randomNumberFromInterval";
 
 export default class HSL {
   name: string;
