@@ -1,6 +1,6 @@
-import RGB from "./components/rgb";
-import Hex from "./components/hex";
-import HSL from "./components/hsl";
+import RGB from "./components/formats/rgb";
+import Hex from "./components/formats/hex";
+import HSL from "./components/formats/hsl";
 import generateDOMTree from "./components/generateDOMTree";
 import { createResultContainer } from "./components/createResultContainer";
 
@@ -138,13 +138,12 @@ export default class RCC {
         }
         return;
       }
-      this._createRandomColor()
-        .then((res) => {
-          createResultContainer(res, this._colorForm);
-        })
-        .catch((err) => {
-          throw new Error(err);
-        });
+      this._createRandomColor().then((res) => {
+        createResultContainer(res, this._colorForm);
+      });
+      // .catch((err) => {
+      //   throw new Error(err);
+      // });
     });
   }
 
