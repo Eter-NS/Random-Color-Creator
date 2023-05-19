@@ -27,7 +27,11 @@
   border-radius: $border-radius-large;
   text-align: center;
 
-  $height: 45px;
+  --height: 45px;
+
+  @media (max-width: 400px) {
+    --height: 60px;
+  }
 
   &__block-label {
     margin-top: 25px;
@@ -37,18 +41,19 @@
     height: 45px;
   }
 
-  &__color-preview {
+  &__color-preview,
+  &__history-color-preview {
     border: 3px solid rgb(0, 0, 0, 0.75);
-    width: $height;
-    height: $height;
+    width: var(--height);
+    height: var(--height);
   }
 
   &__output-element {
     display: grid;
     place-items: center;
-    height: $height;
-    padding: 0 calc($height / 2);
-    margin-left: calc($height / 2);
+    height: var(--height);
+    padding: 0 calc(var(--height) / 5);
+    margin-left: calc(var(--height) / 5);
     background-color: $first-color;
     border: 2px solid black;
     border-right-width: 0;
@@ -58,8 +63,8 @@
     background-color: $first-color;
     border: 2px solid black;
     border-left-width: 0;
-    height: $height;
-    width: $height;
+    height: var(--height);
+    width: var(--height);
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -67,9 +72,56 @@
     position: relative;
     --animation-name: null;
     --animation-duration: null;
-    @include addTooltip($content: attr(data-tooltip), $width: max-content) {
+    @include addTooltip($content: attr(data-tooltip), $width: 150px) {
       opacity: 0;
       animation: var(--animation-name) var(--animation-duration) ease;
+    }
+  }
+
+  &__history {
+    &-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-h3 {
+      font-size: 1.45rem;
+      margin: {
+        top: 50px;
+        bottom: 25px;
+      }
+    }
+
+    &-table {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-table-row,
+    &-table-row--header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.2em 0;
+      width: 100%;
+      max-width: 300px;
+
+      &--header {
+        justify-content: space-evenly;
+      }
+    }
+
+    &-table-header {
+      font-size: 1.2rem;
+    }
+
+    &-color-preview {
+      margin-right: 1.5rem;
+    }
+
+    &-color-text {
+      font-size: 1.2rem;
     }
   }
 }
