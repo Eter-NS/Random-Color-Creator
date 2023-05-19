@@ -19,7 +19,7 @@
 
   // the content
   &::before {
-    $block-padding: 20%;
+    $block-padding: 0.4em;
     --transform-y: calc(100% + #{$block-padding} / 2);
 
     content: $content;
@@ -37,7 +37,7 @@
 
   // arrow
   &::after {
-    --transform-y: 0%;
+    --transform-y: 50%;
     content: "";
     border: 20px solid transparent;
     border-bottom-color: $background-color;
