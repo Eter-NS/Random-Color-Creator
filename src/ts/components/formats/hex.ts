@@ -1,5 +1,6 @@
 import { Phrases } from "../../types/SectionPhrases";
 import randomNumberFromInterval from "../randomNumberFromInterval";
+import { returnStringLength } from "../returnInputValueLength";
 
 export default class Hex {
   name: string;
@@ -27,7 +28,7 @@ export default class Hex {
     this.red = "";
     this.green = "";
     this.blue = "";
-    this._hexCharTable = "0123456789abcdef";
+    this._hexCharTable = "0123456789ABCDEF";
     this._hexColor = [this.red, this.green, this.blue];
   }
 
@@ -36,11 +37,11 @@ export default class Hex {
   }
 
   createColor(userInputs: string[]): string | null {
-    const isShorthand = userInputs[0]?.length < 2;
+    const isShorthand = returnStringLength(userInputs) === 1;
 
     for (let i = 0; i < this._hexColor.length; i++) {
       if (typeof userInputs[i] === "string" && userInputs[i].length > 0) {
-        this._hexColor[i] = userInputs[i];
+        this._hexColor[i] = userInputs[i].toUpperCase();
         continue;
       }
 
@@ -50,7 +51,6 @@ export default class Hex {
         this._hexColor[i] = this.selectHexNumber() + this.selectHexNumber();
       }
     }
-    console.log("#" + this._hexColor.join(""));
 
     return "#" + this._hexColor.join("");
   }
