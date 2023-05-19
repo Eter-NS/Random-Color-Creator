@@ -41,7 +41,6 @@ export default class HSL {
       }
     }
     const [hue, saturation, lightness] = this._colorOrder;
-    console.log(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }

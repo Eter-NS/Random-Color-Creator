@@ -39,7 +39,6 @@ export default class RGB {
       }
     }
     const [red, green, blue] = this._colorOrder;
-    console.log(`rgb(${red}, ${green}, ${blue})`);
 
     return `rgb(${red}, ${green}, ${blue})`;
   }
