@@ -1,5 +1,5 @@
-import { Phrases } from "../types/SectionPhrases";
-import randomNumberFromInterval from "./randomNumberFromInterval";
+import { Phrases } from "../../types/SectionPhrases";
+import randomNumberFromInterval from "../randomNumberFromInterval";
 
 export default class RGB {
   name: string;
@@ -39,7 +39,6 @@ export default class RGB {
       }
     }
     const [red, green, blue] = this._colorOrder;
-    console.log(`rgb(${red}, ${green}, ${blue})`);
 
     return `rgb(${red}, ${green}, ${blue})`;
   }

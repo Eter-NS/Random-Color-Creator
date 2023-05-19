@@ -1,6 +1,5 @@
-$default-padding: 5% 8%;
-$default-margin: $default-padding;
-
+$default-padding: null;
+$default-margin: null;
 $border-radius-large: 25px;
 $border-radius-medium: 20px;
 $border-radius-small: 15px;
@@ -9,6 +8,16 @@ $first-color: rgb(104, 100, 100);
 $second-color: rgb(53, 54, 53);
 $root-background-color: #222;
 $footer-color: #141414;
+
+:root {
+  --default-padding: 5% 8%;
+  $default-padding: var(--default-padding) !global;
+  $default-margin: $default-padding !global;
+
+  @media (max-width: 400px) {
+    --default-padding: 2% 4%;
+  }
+}
 
 *::before,
 *::after,
