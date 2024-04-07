@@ -1,15 +1,19 @@
-@use "./reset" as *;
+@use './reset' as *;
 
 // main section elements
-@use "./components/form" as *;
-@use "./components/format_picker" as *;
-@use "./components/fresh-baked-section" as *;
+@use './components/form' as *;
+@use './components/format_picker' as *;
+@use './components/fresh-baked-section' as *;
 
 // footer
-@use "./components/footer" as *;
+@use './components/footer' as *;
 
 // reusable
-@use "./reusable/index";
+@use './reusable/index';
+
+:root {
+  color-scheme: light;
+}
 
 .container {
   margin: 0 auto;

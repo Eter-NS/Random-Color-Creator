@@ -1,6 +1,6 @@
 export type Phrases = {
   name: string;
   inputs: string[];
-  inputType: "text" | "number";
+  inputType: 'text' | 'number';
   placeholder: string[];
 };
