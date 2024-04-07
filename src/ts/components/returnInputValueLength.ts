@@ -1,4 +1,6 @@
-export function returnInputValueLength(inputs: NodeListOf<HTMLInputElement>) {
+export function returnSmallestInputValueLength(
+  inputs: NodeListOf<HTMLInputElement>
+) {
   let smallestLength = 0;
   for (let i = 0; i < inputs.length; i++) {
     const element = inputs[i];
@@ -8,7 +10,7 @@ export function returnInputValueLength(inputs: NodeListOf<HTMLInputElement>) {
   return smallestLength;
 }
 
-export function returnStringLength(array: string[]) {
+export function returnSmallestStringLength(array: string[]) {
   let smallestLength = 0;
   for (let i = 0; i < array.length; i++) {
     const element = array[i];

@@ -1,5 +1,5 @@
-import { Phrases } from "../../types/SectionPhrases";
-import randomNumberFromInterval from "../randomNumberFromInterval";
+import { Phrases } from '../../types/SectionPhrases';
+import randomNumberFromInterval from '../randomNumberFromInterval';
 
 export default class RGB {
   name: string;
@@ -11,16 +11,16 @@ export default class RGB {
   private _colorOrder: number[];
 
   constructor() {
-    this.name = "rgb";
-    this.formatName = "rgb_input";
+    this.name = 'rgb';
+    this.formatName = 'rgb_input';
     this.sectionPhrases = {
       name: this.name.toUpperCase(),
-      inputs: ["Red", "Green", "Blue"],
-      inputType: "number",
+      inputs: ['Red', 'Green', 'Blue'],
+      inputType: 'number',
       placeholder: [
-        "A value from 0 to 255",
-        "A value from 0 to 255",
-        "A value from 0 to 255",
+        'A value from 0 to 255',
+        'A value from 0 to 255',
+        'A value from 0 to 255',
       ],
     };
     this.red = 0;
@@ -32,7 +32,7 @@ export default class RGB {
   createColor(userInputs: string[] = []): string | null {
     for (let i = 0; i < userInputs.length; i++) {
       const userValue = userInputs[i];
-      if (typeof userValue === "string" && userValue.length > 0) {
+      if (typeof userValue === 'string' && userValue.length > 0) {
         this._colorOrder[i] = Number(userValue);
       } else {
         this._colorOrder[i] = randomNumberFromInterval(0, 255);
